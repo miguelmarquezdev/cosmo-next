@@ -28,7 +28,7 @@ export default function pages({ page }) {
         </figure>
       </Link>
       <div className={`py-4`}>
-        <h3 className={`font-bold capitalize text-black text-2xl mb-2`}>{page.title.rendered}</h3>
+        <h3 className={`font-bold capitalize text-black text-xl sm:text-xl md:text-2xl mb-2`}>{page.title.rendered}</h3>
       </div>
     </article>
   );

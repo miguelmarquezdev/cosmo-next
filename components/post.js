@@ -17,7 +17,7 @@ export default function Post({ post }) {
         first-letter:mr-3 first-letter:float-left"></div>
         
         <Link href={`/blog/${post.slug}`} className="text-white bg-primary hover:bg-blue-700 transition-all py-2 px-4 mt-5 inline-block rounded-md text-md">
-          Read more
+          Continue Reading...
         </Link>
       </div>
       <div className={`${styles.bgImg} overflow-hidden rounded-lg`}>
