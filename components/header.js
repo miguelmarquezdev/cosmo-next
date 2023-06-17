@@ -20,13 +20,14 @@ function Navmenu({ open, setOpen }) {
       link: "/machu-picchu",
     },
     {
+      name: "Rainbow Mountain",
+      link: "/rainbow-mountain",
+    },
+    {
       name: "Inca Trail",
       link: "/inca-trail",
     },
-    {
-      name: "Choquequirao Trek",
-      link: "/choquequirao-trek",
-    },
+    
     {
       name: "Blog",
       link: "/blog",

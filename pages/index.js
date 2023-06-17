@@ -6,6 +6,7 @@ import Post from "@/components/post";
 
 
 export default function Home({ pages,categories }) {
+  console.log(pages)
   return (
     <Layout
       title={"Machu Picchu Tours - Cosmo Expeditions"}
@@ -65,7 +66,7 @@ export async function getStaticProps() {
     `${process.env.API_URL}/wp-json/wp/v2/posts?_embed=true&per_page=100`
   );
   const resultado = await res.json();
-  let pages = resultado.filter((page) => page.tags[1] == "20");
+  let pages = resultado.filter((page) => page.tags[0] == "20" || page.tags[1] == "20");
   let categories = resultado.filter((blog) => blog.categories[0] == "14");
 
   return {

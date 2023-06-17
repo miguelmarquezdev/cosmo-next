@@ -27,7 +27,7 @@ module.exports = {
         "primary-family": "Outfit",
       },
       backgroundImage: {
-        'choquequirao': "url('/img/choquequirao.jpg')",
+        'choquequirao': "url('/img/banners/rainbow-mountain.jpg')",
         'inca-trail': "url('/img/inca-trail.jpg')",
         'machu-picchu': "url('/img/mapi.jpg')",
         'cosmo': "url('/img/banners/cosmo.jpg')",
