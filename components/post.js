@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatearFecha } from "@/utils/helper"; 
 import styles from "../styles/blog.module.css"
+
 export default function Post({ post }) {
   console.log(post)
   return (

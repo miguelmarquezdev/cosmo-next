@@ -2,7 +2,6 @@ import Layout from "../../components/layout";
 import Singleblog from "@/components/single-blog";
 import Header from "@/components/header";
 export default function Blog({ resultado }) {
-  console.log(resultado);
   return (
     <Layout
       title={`${resultado[0].yoast_head_json.title}`}
@@ -29,9 +28,9 @@ export async function getStaticPaths() {
   );
   const resultado = await respuesta.json();
 
-  const paths = resultado.map((tour) => ({
+  const paths = resultado.map((blog) => ({
     params: {
-      url: tour.slug,
+      url: blog.slug,
     },
   }));
 

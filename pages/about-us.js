@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Layout from "../components/layout";
-import styles from '../styles/nosotros.module.css'
 import Header from "@/components/header";
 
 export default function Aboutus() {

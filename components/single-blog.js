@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatearFecha } from "@/utils/helper";
+
 export default function Singleblog({ resultado }) {
     return (
         <main>

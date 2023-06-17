@@ -17,13 +17,8 @@ export default function Producto({ resultado }) {
       og_height={`${resultado[0].yoast_head_json.og_image[0].height}`}
       og_image_type={`${resultado[0].yoast_head_json.og_image[0].type}`}
     >
-      <Header bgslate="bg-primary" />
-      {/* {resultado[0].categories_names[0] == "blog" ? (
-        <Singleblog key={resultado[0].slug} resultado={resultado} />
-      ) : (
-        <Singletour key={resultado[0].slug} resultado={resultado} />
-      )} */}
-       <Singletour key={resultado[0].slug} resultado={resultado} />
+    <Header bgslate="bg-primary" />
+      <Singletour key={resultado[0].slug} resultado={resultado} />
     </Layout>
   );
 }
@@ -53,7 +48,7 @@ export async function getStaticProps({ params: { url } }) {
     `${process.env.API_URL}/wp-json/wp/v2/posts?slug=${url}&_embed=true`
   );
   const resultado = await respuesta.json();
-  // console.log(resultado);
+
   return {
     props: {
       resultado,

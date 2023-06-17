@@ -4,7 +4,6 @@ import styles from "../styles/grid.module.css";
 import Header from "@/components/header";
 
 export default function Choquequirao({ categories }) {
-  console.log(categories);
 
   return (
     <Layout
@@ -52,8 +51,7 @@ export async function getStaticProps() {
   );
   const resultado = await res.json();
   let categories = resultado.filter((post) => post.tags[0] == "16");
-  //console.log(categories);
-
+  
   return {
     props: {
       categories,

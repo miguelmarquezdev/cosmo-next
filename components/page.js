@@ -6,7 +6,7 @@ export default function pages({ page }) {
     <article
       className={`transition-all overflow-hidden`}
     >
-      <Link href={`/${page.slug}`} >
+      <Link href={`/tour/${page.slug}`} >
       <Image
           src={
             page._embedded["wp:featuredmedia"][0].media_details.sizes
