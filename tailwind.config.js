@@ -31,6 +31,7 @@ module.exports = {
         'inca-trail': "url('/img/inca-trail.jpg')",
         'machu-picchu': "url('/img/mapi.jpg')",
         'cosmo': "url('/img/banners/cosmo.jpg')",
+        'celular': "url('/img/banners/explore-cusco.jpg')",
       },
       backdropBlur:{
         'drop': "5px",
