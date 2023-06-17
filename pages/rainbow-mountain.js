@@ -53,7 +53,7 @@ export async function getStaticProps() {
     `${process.env.API_URL}/wp-json/wp/v2/posts?_embed=true&per_page=100`
   );
   const resultado = await res.json();
-  let categories = resultado.filter((post) => post.tags[0] == "22");
+  let categories = resultado.filter((post) => post.tags[0] == "22" || post.tags[1] == "22");
   //console.log(categories);
 
   return {

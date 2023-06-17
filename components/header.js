@@ -70,6 +70,14 @@ export default function Header(props) {
             width={350}
             height={37}
             alt="imagen logotipo"
+            className="hidden sm:hidden md:block"
+          />
+          <Image
+            src="/img/logo-celar.svg"
+            width={150}
+            height={37}
+            alt="imagen logotipo"
+            className="block sm:block md:hidden"
           />
         </Link>
         <Navmenu open={open} setOpen={setOpen} />
