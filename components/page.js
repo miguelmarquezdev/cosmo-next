@@ -7,25 +7,27 @@ export default function pages({ page }) {
       className={`transition-all overflow-hidden`}
     >
       <Link href={`/tour/${page.slug}`} >
-      <Image
-          src={
-            page._embedded["wp:featuredmedia"][0].media_details.sizes
-              .full.source_url
-          }
-          width={
-            page._embedded["wp:featuredmedia"][0].media_details.sizes
-              .full.width
-          }
-          height={
-            page._embedded["wp:featuredmedia"][0].media_details.sizes
-              .full.height
-          }
-          alt={page._embedded["wp:featuredmedia"][0].alt_text
-          }
-          className="rounded-xl overflow-hidden object-cover w-full"
-        />
+        <figure className="rounded-xl overflow-hidden h-56">
+          <Image
+            src={
+              page._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.source_url
+            }
+            width={
+              page._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.width
+            }
+            height={
+              page._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.height
+            }
+            alt={page._embedded["wp:featuredmedia"][0].alt_text
+            }
+            className="object-cover h-full aspect-square"
+          />
+        </figure>
       </Link>
-      <div className={`px-3 py-4`}>
+      <div className={`py-4`}>
         <h3 className={`font-bold capitalize text-black text-2xl mb-2`}>{page.title.rendered}</h3>
       </div>
     </article>

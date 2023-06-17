@@ -5,6 +5,10 @@
     -webkit-line-clamp: 5;
     overflow: hidden;
 }
+.contExcerpt h3{
+    padding-left:0;
+    width: 100%;
+}
 .contExcerpt{
     grid-area: 2 / 1 / 2 / 7;
 }

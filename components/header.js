@@ -72,7 +72,7 @@ export default function Header(props) {
           />
         </Link>
         <Navmenu open={open} setOpen={setOpen} />
-        <button
+        <div
           onClick={() => {
             setOpen(!open);
           }}
@@ -93,7 +93,7 @@ export default function Header(props) {
               }`}
             ></span>
           </div>
-        </button>
+        </div>
       </div>
     </header>
   );

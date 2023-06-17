@@ -21,7 +21,7 @@ export default function Aboutus() {
           <h1 className="text-center font-black text-3xl text-primary">About Us</h1>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-10">
             <div>
-              <Image src="/img/banners/mission.jpg" width={800} height={200} alt="mission" className="rounded-xl" />
+              <Image src="/img/banners/mission.jpg" width={800} height={200}  placeholder="blurDataURL" alt="mission" className="rounded-xl" />
               <h2 className="font-bold text-2xl py-5">Mission</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat odio molestiae cum cumque exercitationem expedita pariatur aspernatur laborum, culpa quis modi, quos soluta suscipit, voluptatibus laboriosam iusto tempora. Nesciunt rerum molestias ea fugit maiores illum doloribus error officia, eligendi aut quod, voluptatem ratione, hic corporis veritatis! Cumque laboriosam magnam necessitatibus in facilis quo et. Sequi laborum delectus enim repudiandae, excepturi voluptate quos veritatis sed. Id tenetur nobis doloribus blanditiis aspernatur commodi quas eos inventore, repellat, dolores dolorem impedit repellendus? Explicabo.</p>
             </div>
