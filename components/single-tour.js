@@ -104,7 +104,7 @@ export default function Singletour({ resultado }) {
                   </b>
                 </span>
                 <a
-                  href={resultado[0].acf.link_pago}
+                  href="https://wa.link/9hxmdc" target="_blank"
                   className={`bg-primary text-white block py-2 text-center rounded-md 
                   pointer mt-3 hover:bg-blue-700 transition-all`}
                 >
