@@ -10,19 +10,19 @@ export default function pages({ page }) {
           <source media="(max-width: 799px)" srcSet={`${page._embedded["wp:featuredmedia"][0].media_details.sizes
                 .medium.source_url}`}></source>   
         <source media="(min-width: 800px)" srcSet={`${page._embedded["wp:featuredmedia"][0].media_details.sizes
-                .medium_large.source_url}`}></source> 
+                .medium.source_url}`}></source> 
             <Image
               src={
                 page._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.source_url
+                  .medium.source_url
               }
               width={
                 page._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.width
+                  .medium.width
               }
               height={
                 page._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.height
+                  .medium.height
               }
               media="(min-width: 800px)"
               alt={page._embedded["wp:featuredmedia"][0].alt_text}
