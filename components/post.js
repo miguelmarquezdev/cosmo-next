@@ -32,32 +32,22 @@ export default function Post({ post }) {
       </div>
       <div className={`${styles.bgImg} overflow-hidden rounded-lg`}>
         <Link href={`/blog/${post.slug} `}>
-          <picture>
-            <source
-              media="(max-width: 799px)"
-              srcSet={`${post._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url}`}
-            ></source>
-            <source
-              media="(min-width: 800px)"
-              srcSet={`${post._embedded["wp:featuredmedia"][0].media_details.sizes.medium_large.source_url}`}
-            ></source>
-            <Image
-              className=" relative"
-              src={
-                post._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.source_url
-              }
-              width={
-                post._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.width
-              }
-              height={
-                post._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .medium_large.height
-              }
-              alt={post.title.rendered}
-            />
-          </picture>
+          <Image
+            className=" relative"
+            src={
+              post._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.source_url
+            }
+            width={
+              post._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.width
+            }
+            height={
+              post._embedded["wp:featuredmedia"][0].media_details.sizes
+                .medium_large.height
+            }
+            alt={post.title.rendered}
+          />
         </Link>
       </div>
     </article>
