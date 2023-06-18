@@ -6,7 +6,7 @@ import Post from "@/components/post";
 
 
 export default function Home({ pages,categories }) {
-  console.log(pages)
+  
   return (
     <Layout
       title={"Machu Picchu Tours - Cosmo Expeditions"}

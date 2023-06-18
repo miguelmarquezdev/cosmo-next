@@ -4,8 +4,6 @@ import styles from "../styles/grid.module.css";
 import Header from "@/components/header";
 
 export default function Machupicchu({ categories }) {
-  console.log(categories);
-
   return (
     <Layout
       title={"Machu Picchu Tours - Cosmo Expeditions"}

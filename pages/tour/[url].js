@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import Singletour from "@/components/single-tour";
 import Header from "@/components/header";
 export default function Producto({ resultado }) {
-  console.log(resultado);
+  
   return (
     <Layout
       title={`${resultado[0].yoast_head_json.title}`}

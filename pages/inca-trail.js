@@ -4,7 +4,6 @@ import styles from "../styles/grid.module.css";
 import Header from "@/components/header";
 
 export default function Incatrail({ categories }) {
-  console.log(categories);
 
   return (
     <Layout

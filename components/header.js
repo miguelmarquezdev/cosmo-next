@@ -64,21 +64,20 @@ export default function Header(props) {
   return (
     <header className={`bg-primary ${props.bgslate} px-4`}>
       <div className={`container mx-auto ${styles.barra} justify-between`}>
+        
         <Link href="/">
+          <picture>
+          <source media="(max-width: 799px)" srcSet="/img/logo-celar.svg"></source>   
+          <source media="(min-width: 800px)" srcSet="/img/cosmo-expeditions.svg"></source>
           <Image
             src="/img/cosmo-expeditions.svg"
-            width={350}
-            height={37}
-            alt="imagen logotipo"
-            className="hidden sm:hidden md:block"
-          />
-          <Image
-            src="/img/logo-celar.svg"
             width={150}
             height={37}
             alt="imagen logotipo"
-            className="block sm:block md:hidden"
+            className="w-36 sm:w-36 md:w-fulaso lg:w-fulaso my-2 sm:my-2 md:my-0"
+            media="(min-width: 800px)"
           />
+          </picture>
         </Link>
         <Navmenu open={open} setOpen={setOpen} />
         <div

@@ -43,6 +43,9 @@ module.exports = {
         'mitad': "55vh",
         'one': "2px"
       },
+      width:{
+        'fulaso': "350px",
+      }
     },
   },
   plugins: [],
