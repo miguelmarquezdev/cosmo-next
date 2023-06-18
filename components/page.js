@@ -6,12 +6,7 @@ export default function pages({ page }) {
     <article className={`transition-all overflow-hidden`}>
       <Link href={`/tour/${page.slug}`}>
         <figure className="rounded-xl overflow-hidden h-56">
-          <picture>
-          <source media="(max-width: 799px)" srcSet={`${page._embedded["wp:featuredmedia"][0].media_details.sizes
-                .medium.source_url}`}></source>   
-        <source media="(min-width: 800px)" srcSet={`${page._embedded["wp:featuredmedia"][0].media_details.sizes
-                .medium.source_url}`}></source> 
-            <Image
+        <Image
               src={
                 page._embedded["wp:featuredmedia"][0].media_details.sizes
                   .medium.source_url
@@ -28,7 +23,6 @@ export default function pages({ page }) {
               alt={page._embedded["wp:featuredmedia"][0].alt_text}
               className="object-cover h-full aspect-square"
             />
-          </picture>
         </figure>
       </Link>
       <div className={`py-4`}>
