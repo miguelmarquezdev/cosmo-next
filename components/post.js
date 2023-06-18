@@ -4,7 +4,6 @@ import { formatearFecha } from "@/utils/helper";
 import styles from "../styles/blog.module.css";
 
 export default function Post({ post }) {
-  console.log(post);
   return (
     <article
       className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-4 ${styles.post} items-center mb-16`}
