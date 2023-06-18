@@ -16,7 +16,7 @@ console.log(categories)
     >
       <Header bgslate="bg-transparent absolute w-full z-10" />
       <div
-        className={`bg-celular sm:bg-celular md:bg-cosmo w-full h-mitad relative bg-no-repeat bg-cover bg-center ${styles.bgfondo}`}
+        className={`bg-celar sm:bg-celar md:bg-cosmo w-full h-mitad relative bg-no-repeat bg-cover bg-center ${styles.bgfondo}`}
       >
         <div
           className={`container mx-auto flex items-center h-full relative justify-center`}
