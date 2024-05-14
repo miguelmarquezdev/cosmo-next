@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/tour.module.css";
 import Image from "next/image";
+import {motion} from "framer-motion"
 
 export default function Singletour({ resultado }) {
   const navLink = [
@@ -38,7 +39,7 @@ export default function Singletour({ resultado }) {
         <main>
           <section className="flex flex-col md:flex-row gap-5">
             <div className="w-full sm:w-full md:w-1/2">
-              <Image
+              <motion.img
                 priority={true}
                 src={
                   resultado[0]._embedded["wp:featuredmedia"][0].media_details
@@ -54,6 +55,8 @@ export default function Singletour({ resultado }) {
                 }
                 className="rounded-xl"
                 alt={resultado[0]._embedded["wp:featuredmedia"][0].alt_text}
+                layoutId={resultado[0]._embedded["wp:featuredmedia"][0].media_details
+                .sizes.full.source_url}
               />
             </div>
             <div className="w-full sm:w-full md:w-1/2">

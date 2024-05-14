@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import Link from "next/link";
 import styles from "../styles/grid.module.css";
 import { GoArrowDownRight } from "react-icons/go";
+import {motion} from "framer-motion"
 
 export default function Home({ resultado, trabajos, blogs }) {
   console.log(resultado);
@@ -80,13 +81,14 @@ export default function Home({ resultado, trabajos, blogs }) {
             {trabajos.map((post) => (
               <Link href={`/proyecto/${post.slug}`} key={post.slug}>
                 <div className="w-full overflow-hidden rounded-2xl  hover:scale-105 transition-all duration-300 ease-out">
-                  <img
+                  <motion.img
                     src={
                       post.yoast_head_json.og_image[0].url
                         ? post.yoast_head_json.og_image[0].url
                         : ""
                     }
                     alt={post.yoast_head_json.og_image[0].url}
+                    layoutId={post.yoast_head_json.og_image[0].url}
                   />
                 </div>
                 <h1 className="font-semibold text-xl uppercase mt-5 mb-3 text-secondary">
