@@ -4,7 +4,7 @@ import HeaderDos from "@/components/header-dos";
 import { GoArrowDownRight } from "react-icons/go";
 import styles from "../styles/grid.module.css";
 
-export default function Aboutus() {
+export default function Seo() {
   return (
     <main>
       <Layout
