@@ -37,11 +37,25 @@
   padding: 0;
   overflow: hidden;
 }
+.navegaciontwo a{
+  height: none;
+  text-align: center;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
 .navegacion a.active{
   color: white;
 }
+.navegaciontwo a.active{
+  color: #0092e5;
+}
 @media (min-width: 767px) {
   .navegacion a{
+    height: 100%;
+    padding: 1.5rem 0;
+  }
+  .navegaciontwo a{
     height: 100%;
     padding: 1.5rem 0;
   }
@@ -57,13 +71,32 @@
     bottom: 1rem;
     transition: .6s;
   }
+  .navegaciontwo a::before {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 2px;
+    background: #0089d7;
+    left: 120%;
+    bottom: 1rem;
+    transition: .6s;
+  }
+
   .navegacion a:hover::before {
+    animation: eeee 0.3s 1 ease-in-out;
+    left: -10%;
+    transition: .2s;
+  }
+  .navegaciontwo a:hover::before {
     animation: eeee 0.3s 1 ease-in-out;
     left: -10%;
     transition: .2s;
   }
   .navegacion a.active{
     color: white;
+  }
+  .navegaciontwo a.active{
+    color: #0089d7;
   }
    .navegacion a.active::after {
     content: "";
@@ -76,7 +109,22 @@
     bottom: 1rem;
     transition: .6s;
   }
+  .navegaciontwo a.active::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 2px;
+    background: #0089d7;
+    border: 0;
+    left: 0;
+    bottom: 1rem;
+    transition: .6s;
+  }
   .navegacion a{
+    height: 100%;
+    padding: 1.5rem 0;
+  }
+  .navegaciontwo a{
     height: 100%;
     padding: 1.5rem 0;
   }

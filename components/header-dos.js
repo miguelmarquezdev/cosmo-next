@@ -6,7 +6,7 @@ import styles from "../styles/header.module.css";
 
 function Navmenu({ open, setOpen }) {
   const router = useRouter();
-  const navLink = [
+  const navLink =  [
     {
       name: "Inicio",
       link: "/",
@@ -31,9 +31,9 @@ function Navmenu({ open, setOpen }) {
   return (
     <nav
       className={`${
-        styles.navegacion
+        styles.navegaciontwo
       } flex flex-col justify-center md:justify-end z-20 px-4 sm:flex-col md:flex-row  gap-8 text-md absolute sm:absolute md:relative top sm:top md:top left-0 
-      sm:left-0 md:left-0 w-full sm:w-full md:w-full bg-secondary sm:bg-secondary md:bg-transparent transform 
+      sm:left-0 md:left-0 w-full sm:w-full md:w-full bg-white sm:bg-white md:bg-transparent transform 
       ${
         open
           ? "sm:-translate-y-0 sm:h-screen sm:top-0 -translate-y-0 h-screen top-0"
@@ -44,7 +44,7 @@ function Navmenu({ open, setOpen }) {
           key={name}
           href={link}
           className={`${
-            router.pathname === link ? styles.active : "text-white"
+            router.pathname === link ? styles.active : "text-secondary"
           }`}
         >
           {name}
@@ -59,12 +59,12 @@ export default function Header(props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={`bg-secondary ${props.bgslate} px-4`}>
+    <header className={`bg-white ${props.bgslate} px-4`}>
       <div className={`max-w-screen-xl mx-auto ${styles.barra} justify-between`}>
         <Link href="/">
           <picture>
-          <source media="(max-width: 799px)" srcSet="/img/logo-mia-solutions.svg"></source>   
-          <source media="(min-width: 800px)" srcSet="/img/logo-mia-solutions.svg"></source>
+          <source media="(max-width: 799px)" srcSet="/img/logo-mia-negro.svg"></source>   
+          <source media="(min-width: 800px)" srcSet="/img/logo-mia-negro.svg"></source>
           <Image
             src="/img/logo-mia-solutions.svg"
             width={150}
@@ -84,15 +84,15 @@ export default function Header(props) {
         >
           <div className="group z-30 relative w-6 h-4 my-5 cursor-pointer flex flex-col justify-between items-center">
             <span
-              className={`h-one w-full bg-white rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
+              className={`h-one w-full bg-secondary rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
                 open ? "rotate-45 translate-y-1.5" : ""
               }`}
             ></span>
             <span
-              className={`w-full bg-white rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${open ? "h-0" : "w-full h-one"}`}
+              className={`w-full bg-secondary rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${open ? "h-0" : "w-full h-one"}`}
             ></span>
             <span
-              className={`h-one w-full bg-white rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
+              className={`h-one w-full bg-secondary rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
                 open ? "-rotate-45 -translate-y-2" : ""
               }`}
             ></span>

@@ -1,6 +1,6 @@
 import Layout from "../../components/layout";
 import Singletour from "@/components/single-tour";
-import Header from "@/components/header";
+import HeaderTwo from "@/components/header-dos";
 export default function Producto({ resultado }) {
   
   return (
@@ -17,7 +17,7 @@ export default function Producto({ resultado }) {
       og_height={`${resultado[0].yoast_head_json.og_image[0].height}`}
       og_image_type={`${resultado[0].yoast_head_json.og_image[0].type}`}
     >
-    <Header bgslate="bg-primary" />
+    <HeaderTwo />
       <Singletour key={resultado[0].slug} resultado={resultado} />
     </Layout>
   );
@@ -25,7 +25,7 @@ export default function Producto({ resultado }) {
 
 export async function getStaticPaths() {
   const respuesta = await fetch(
-    `${process.env.API_URL}/wp-json/wp/v2/posts?per_page=100`
+    `https://app.enjoyperu.org/wp-json/wp/v2/posts?per_page=100`
   );
   const resultado = await respuesta.json();
 
@@ -35,7 +35,7 @@ export async function getStaticPaths() {
     },
   }));
 
-  // console.log(paths);
+  console.log(paths);
 
   return {
     paths,
@@ -45,7 +45,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { url } }) {
   const respuesta = await fetch(
-    `${process.env.API_URL}/wp-json/wp/v2/posts?slug=${url}&_embed=true`
+    `https://app.enjoyperu.org/wp-json/wp/v2/posts?slug=${url}&_embed=true`
   );
   const resultado = await respuesta.json();
 

@@ -4,7 +4,7 @@ const nextConfig ={
   swcMinify:true,
   images:{
     formats:['image/avif', 'image/webp'],
-    domains: ['wp.larestrip.com']
+    domains: ['app.enjoyperu.org']
   }
 }
 

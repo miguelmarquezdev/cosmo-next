@@ -13,8 +13,9 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "#334eff",
-        laight:"#f5f7fa"
+        primary: "#0092e5",
+        laight:"#f5f7fa",
+        secondary:"#142331",
       },
       borderRadius: {
         primary: "20px",
@@ -27,10 +28,10 @@ module.exports = {
         "primary-family": "Outfit",
       },
       backgroundImage: {
-        'choquequirao': "url('/img/banners/rainbow-mountain.jpg')",
-        'inca-trail': "url('/img/inca-trail.jpg')",
+        'bannertwo': "url('/img/banners/banner-2.jpg')",
+        'bannerpages': "url('/img/banners/banner-pages.webp')",
         'machu-picchu': "url('/img/mapi.jpg')",
-        'cosmo': "url('/img/banners/cosmo.jpg')",
+        'cosmo': "url('/img/banners/main-banner.jpg')",
         'celar': "url('/img/banners/explore-cusco.webp')",
       },
       backdropBlur:{
@@ -48,5 +49,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: ['tailwindcss-animated'],
 };
