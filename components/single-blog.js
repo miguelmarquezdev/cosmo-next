@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { formatearFecha } from "@/utils/helper";
+import {motion} from "framer-motion"
 
 export default function Singleblog({ resultado }) {
   console.log(resultado);
@@ -9,7 +9,7 @@ export default function Singleblog({ resultado }) {
       <section>
         <div>
           <div
-            className={`w-full max-w-screen-xl px-4 sm:px-4 md:px-4 lg:px-4 mx-auto  py-5 flex gap-3`}
+            className={`w-full max-w-screen-xl px-4 sm:px-4 md:px-4 lg:px-4 mx-auto  py-5 flex gap-3 xl:px-0`}
           >
             <Link href="/" className="text-primary hover:text-blue-700">
               Home
@@ -23,7 +23,7 @@ export default function Singleblog({ resultado }) {
         </div>
       </section>
       <section
-        className={`w-full max-w-screen-xl px-4 sm:px-4 md:px-4 lg:px-4 mx-auto`}
+        className={`w-full max-w-screen-xl px-4 sm:px-4 md:px-4 lg:px-4 xl:px-0 mx-auto`}
       >
         <div className="">
           <div className="flex flex-col sm:flex-col md:flex-row justify-between mb-10 items-start sm:items-start md:items-center">
@@ -36,14 +36,14 @@ export default function Singleblog({ resultado }) {
               <img
                 src={resultado[0]._embedded.author[0].avatar_urls[24]}
                 className="rounded-full"
-              ></img>{" "}
+              />
               {resultado[0]._embedded.author[0].name}
             </span>
             <span className="block text-md ">
               <strong className="text-secondary">Publicado: </strong> {formatearFecha(resultado[0].date)}
             </span>
           </div>
-          <Image
+          <motion.img
             priority={true}
             src={
               resultado[0]._embedded["wp:featuredmedia"][0].media_details.sizes
@@ -59,6 +59,8 @@ export default function Singleblog({ resultado }) {
             }
             className="rounded-lg mb-5"
             alt={resultado[0].title.rendered}
+            layoutId={resultado[0]._embedded["wp:featuredmedia"][0].media_details.sizes
+            .full.source_url}
           />
           <div
             className="wp-content mb-40 first-line:uppercase first-line:tracking-widest

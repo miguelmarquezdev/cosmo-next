@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import { GoArrowDownRight } from "react-icons/go";
 import Link from "next/link";
 import { formatearFecha } from "@/utils/helper";
+import {motion} from "framer-motion"
 
 export default function Blog({ blogs }) {
   console.log(blogs);
@@ -23,13 +24,14 @@ export default function Blog({ blogs }) {
                 <Link
                   href={`/blog/${blog.slug}`}
                 >
-                <img
+                <motion.img
                   src={
                     blog.yoast_head_json.og_image[0].url
                       ? blog.yoast_head_json.og_image[0].url
                       : ""
                   }
                   alt={blog.yoast_head_json.og_image[0].url}
+                  layoutId={blog.yoast_head_json.og_image[0].url}
                 />
                 </Link>
                 <div className="flex justify-between px-10 pt-5">

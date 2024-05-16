@@ -1,6 +1,4 @@
 import Link from "next/link";
-import styles from "../styles/tour.module.css";
-import Image from "next/image";
 import {motion} from "framer-motion"
 
 export default function Singletour({ resultado }) {

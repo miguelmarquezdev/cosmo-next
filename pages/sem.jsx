@@ -10,7 +10,7 @@ import { GiSouthAmerica } from "react-icons/gi";
 
 
 
-export default function Aboutus() {
+export default function Sem() {
   return (
     <main>
       <Layout
