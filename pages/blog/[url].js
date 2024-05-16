@@ -15,6 +15,7 @@ export default function Blog({ resultado }) {
       og_width={`${resultado[0].yoast_head_json.og_image[0].width}`}
       og_height={`${resultado[0].yoast_head_json.og_image[0].height}`}
       og_image_type={`${resultado[0].yoast_head_json.og_image[0].type}`}
+      twitter_card={`${resultado[0].yoast_head_json.twitter_card}`}
     >
       <HeaderTwo />
       <Singleblog key={resultado[0].slug} resultado={resultado} />
