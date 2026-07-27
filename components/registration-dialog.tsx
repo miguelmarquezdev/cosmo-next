@@ -1,4 +1,5 @@
 "use client"
+import { trackEvent } from "@/lib/analytics"
 import { useEffect, useState } from "react"
 import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react"
 import { toast } from "sonner"
@@ -26,8 +27,8 @@ export function RegistrationDialog({label="Comienza gratis",className,variant="d
  function update<K extends keyof Draft>(key:K,value:Draft[K]){setData(v=>({...v,[key]:value}))}
  function valid(){if(step===1&&!data.name.trim()){toast.error("Escribe tu nombre completo");return false}if(step===2&&!data.service){toast.error("Selecciona un servicio");return false}if(step===2&&!data.goals.trim()){toast.error("Cuéntanos qué deseas lograr");return false}return true}
  function next(){if(valid())setStep(s=>Math.min(3,s+1))}
- async function google(){if(!valid())return;setBusy(true);try{localStorage.setItem("miads_registration_draft",JSON.stringify(data));const s=createClient();const{error}=await s.auth.signInWithOAuth({provider:"google",options:{redirectTo:`${location.origin}/auth/callback?next=/auth/complete`,queryParams:{prompt:"select_account",access_type:"offline"}}});if(error)throw error}catch(e:any){toast.error(e.message||"No se pudo conectar con Google");setBusy(false)}}
- function reset(v:boolean){setOpen(v);if(!v)setTimeout(()=>setStep(1),250)}
+ async function google(){if(!valid())return;trackEvent("begin_google_registration",{service:data.service||"unknown"});setBusy(true);try{localStorage.setItem("miads_registration_draft",JSON.stringify(data));const s=createClient();const{error}=await s.auth.signInWithOAuth({provider:"google",options:{redirectTo:`${location.origin}/auth/callback?next=/auth/complete`,queryParams:{prompt:"select_account",access_type:"offline"}}});if(error)throw error}catch(e:any){toast.error(e.message||"No se pudo conectar con Google");setBusy(false)}}
+ function reset(v:boolean){setOpen(v);if(v)trackEvent("open_registration_modal",{location:"site"});if(!v)setTimeout(()=>setStep(1),250)}
  return <Dialog open={open} onOpenChange={reset}><DialogTrigger asChild><Button variant={variant} className={className}>{label}{variant!=="ghost"&&<ArrowRight className="size-4"/>}</Button></DialogTrigger><DialogContent className="sm:max-w-[620px]">
   <DialogHeader>
    <div className="mb-5 flex items-center justify-center gap-3">{[1,2,3].map((n,i)=><div key={n} className="flex items-center gap-3"><div className={cn("grid size-9 place-items-center rounded-full border text-sm font-bold transition",n<step&&"border-primary bg-primary text-white",n===step&&"border-primary bg-primary/10 text-primary",n>step&&"border-border bg-muted text-muted-foreground")}>{n<step?<Check className="size-4"/>:n}</div>{i<2&&<div className={cn("h-px w-10 sm:w-20",n<step?"bg-primary":"bg-border")}/>}</div>)}</div>

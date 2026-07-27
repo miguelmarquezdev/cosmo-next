@@ -65,3 +65,41 @@ Contenido destacado dentro del artículo.
 ```
 
 La tabla de contenido se genera automáticamente con los encabezados `##` y `###`. El tiempo de lectura también se calcula automáticamente. Para añadir una portada, guarda la imagen en `public/images/blog/` y usa su ruta en `image`.
+
+## Google Analytics 4 y Search Console
+
+La integración ya está incluida en el proyecto.
+
+### 1. Variables en desarrollo
+
+Copia `.env.example` a `.env.local` y completa:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://miads.dev
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+GOOGLE_SITE_VERIFICATION=TU_CODIGO_DE_VERIFICACION
+```
+
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID`: en Google Analytics, abre **Administrar → Flujos de datos → Web** y copia el ID que comienza con `G-`.
+- `GOOGLE_SITE_VERIFICATION`: en Search Console elige verificación por **Etiqueta HTML** y copia solamente el valor de `content`.
+
+### 2. Variables en Vercel
+
+En **Project Settings → Environment Variables**, crea las mismas tres variables para Production, Preview y Development. Luego realiza un Redeploy.
+
+### 3. Archivos automáticos
+
+- `/robots.txt` se genera desde `app/robots.ts`.
+- `/sitemap.xml` se genera desde `app/sitemap.ts` e incluye automáticamente todos los artículos MDX publicados.
+- La meta de Search Console se genera en `app/layout.tsx`.
+- Google Analytics se carga en todas las páginas desde `app/layout.tsx` únicamente cuando existe el ID.
+
+### 4. Eventos personalizados
+
+Puedes importar el helper:
+
+```tsx
+import { trackEvent } from "@/lib/analytics"
+
+trackEvent("click_whatsapp", { location: "hero" })
+```
