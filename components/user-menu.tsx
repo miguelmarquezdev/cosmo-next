@@ -1,0 +1,7 @@
+"use client"
+import Link from "next/link"
+import { LogOut,LayoutDashboard,UserRound } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
+import { Button } from "@/components/ui/button"
+export function UserMenu({name,avatar}:{name:string;avatar?:string|null}){const router=useRouter();const initials=name.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();async function logout(){await createClient().auth.signOut();router.push("/");router.refresh()}return <div className="group relative"><button className="flex size-9 items-center justify-center overflow-hidden rounded-full border border-white/15 bg-white/10 text-xs font-bold text-white" aria-label="Menú de usuario">{avatar?<img src={avatar} alt="" className="size-full object-cover"/>:initials||<UserRound className="size-4"/>}</button><div className="invisible absolute right-0 top-full z-50 mt-2 w-52 translate-y-1 rounded-xl border border-white/10 bg-[#0b1728] p-2 opacity-0 shadow-2xl transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"><p className="truncate px-3 py-2 text-xs text-white/55">{name}</p><Button asChild variant="ghost" className="w-full justify-start text-white hover:bg-white/10"><Link href="/cliente"><LayoutDashboard className="size-4"/>Mi panel</Link></Button><Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10" onClick={logout}><LogOut className="size-4"/>Cerrar sesión</Button></div></div>}

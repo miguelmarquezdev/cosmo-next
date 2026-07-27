@@ -1,0 +1,342 @@
+---
+title: "Cómo crear un tema de WordPress desde cero"
+description: "Aprende a construir un tema de WordPress propio con PHP, CSS, JavaScript y las funciones esenciales del CMS."
+date: "2026-07-26"
+author: "Equipo Miads"
+category: "Desarrollo web"
+image: "/images/blog/como-crear-un-tema-para-wordpress.webp"
+tags:
+  - WordPress
+  - PHP
+  - Desarrollo web
+featured: true
+published: true
+---
+
+Crear un tema propio de WordPress te permite controlar el diseño, el rendimiento y la estructura de tu sitio sin depender de una plantilla pesada. En esta guía construiremos una base funcional y limpia que luego podrás adaptar a cualquier proyecto.
+
+<Callout type="info" title="Antes de comenzar">
+Necesitas una instalación local de WordPress, conocimientos básicos de HTML y CSS, y un editor como Visual Studio Code.
+</Callout>
+
+## Estructura mínima del tema
+
+Dentro de `wp-content/themes/` crea una carpeta llamada `mi-tema`. La estructura inicial será esta:
+
+```text title="wp-content/themes/mi-tema"
+mi-tema/
+├── assets/
+│   ├── css/
+│   │   └── main.css
+│   └── js/
+│       └── main.js
+├── footer.php
+├── functions.php
+├── header.php
+├── index.php
+├── screenshot.png
+└── style.css
+```
+
+WordPress solo necesita `style.css` e `index.php` para reconocer un tema, pero los demás archivos permiten organizarlo correctamente.
+
+## Registrar la información del tema
+
+Abre `style.css` y añade el encabezado obligatorio. WordPress leerá estos datos para mostrar el tema en el administrador.
+
+```css title="style.css"
+/*
+Theme Name: Mi Tema
+Theme URI: https://miads.dev
+Author: Miads
+Author URI: https://miads.dev
+Description: Tema personalizado y optimizado para WordPress.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+Text Domain: mi-tema
+*/
+```
+
+Después de guardar el archivo, entra a **Apariencia → Temas**. Ya deberías ver “Mi Tema” disponible para activar.
+
+## Configurar functions.php
+
+El archivo `functions.php` sirve para registrar características, menús, estilos y scripts del tema.
+
+```php title="functions.php"
+<?php
+
+if (! defined('ABSPATH')) {
+    exit;
+}
+
+function mi_tema_setup(): void
+{
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
+    add_theme_support('html5', [
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+        'style',
+        'script',
+    ]);
+
+    register_nav_menus([
+        'primary' => __('Menú principal', 'mi-tema'),
+        'footer'  => __('Menú del footer', 'mi-tema'),
+    ]);
+}
+add_action('after_setup_theme', 'mi_tema_setup');
+```
+
+La validación de `ABSPATH` evita que alguien ejecute el archivo directamente desde el navegador.
+
+## Cargar CSS y JavaScript correctamente
+
+No enlaces los archivos manualmente dentro de `header.php`. WordPress ofrece funciones para administrar versiones, dependencias y ubicación de los recursos.
+
+```php title="functions.php"
+function mi_tema_assets(): void
+{
+    $version = wp_get_theme()->get('Version');
+
+    wp_enqueue_style(
+        'mi-tema-main',
+        get_template_directory_uri() . '/assets/css/main.css',
+        [],
+        $version
+    );
+
+    wp_enqueue_script(
+        'mi-tema-main',
+        get_template_directory_uri() . '/assets/js/main.js',
+        [],
+        $version,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'mi_tema_assets');
+```
+
+El último parámetro de `wp_enqueue_script()` carga el JavaScript antes de cerrar `body`, lo que normalmente mejora el rendimiento.
+
+## Crear el header
+
+El archivo `header.php` contiene el inicio del documento y la navegación principal.
+
+```php title="header.php"
+<!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
+<header class="site-header">
+    <div class="container">
+        <a class="site-logo" href="<?php echo esc_url(home_url('/')); ?>">
+            <?php bloginfo('name'); ?>
+        </a>
+
+        <nav aria-label="<?php esc_attr_e('Navegación principal', 'mi-tema'); ?>">
+            <?php
+            wp_nav_menu([
+                'theme_location' => 'primary',
+                'container'      => false,
+                'fallback_cb'    => false,
+            ]);
+            ?>
+        </nav>
+    </div>
+</header>
+
+<main id="content" class="site-content">
+```
+
+Usamos funciones como `language_attributes()`, `body_class()` y `wp_head()` para conservar la compatibilidad con plugins y con el propio WordPress.
+
+## Crear el footer
+
+En `footer.php` cerramos el contenido principal y llamamos a `wp_footer()`.
+
+```php title="footer.php"
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <p>
+            &copy; <?php echo esc_html(wp_date('Y')); ?>
+            <?php bloginfo('name'); ?>.
+        </p>
+    </div>
+</footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>
+```
+
+`wp_footer()` es indispensable porque muchos plugins y scripts dependen de esa función.
+
+## Mostrar las entradas en index.php
+
+El Loop es el mecanismo con el que WordPress obtiene y muestra publicaciones.
+
+```php title="index.php"
+<?php get_header(); ?>
+
+<section class="posts container">
+    <?php if (have_posts()) : ?>
+        <?php while (have_posts()) : the_post(); ?>
+            <article <?php post_class('post-card'); ?>>
+                <?php if (has_post_thumbnail()) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_post_thumbnail('large'); ?>
+                    </a>
+                <?php endif; ?>
+
+                <h2>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php the_title(); ?>
+                    </a>
+                </h2>
+
+                <div class="post-excerpt">
+                    <?php the_excerpt(); ?>
+                </div>
+            </article>
+        <?php endwhile; ?>
+
+        <?php the_posts_pagination(); ?>
+    <?php else : ?>
+        <p><?php esc_html_e('No se encontraron publicaciones.', 'mi-tema'); ?></p>
+    <?php endif; ?>
+</section>
+
+<?php get_footer(); ?>
+```
+
+<Callout type="tip" title="Buena práctica">
+Escapa cualquier dato que tú mismo imprimas con funciones como `esc_html()`, `esc_url()` o `esc_attr()`. Las funciones `the_title()` y `the_permalink()` ya aplican el tratamiento esperado para su contexto habitual.
+</Callout>
+
+## Añadir los estilos principales
+
+Ahora crea una base visual sencilla en `assets/css/main.css`.
+
+```css title="assets/css/main.css"
+:root {
+  --color-primary: #0092e5;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-surface: #ffffff;
+  --container: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(16px);
+}
+
+.post-card {
+  padding-block: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.post-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: var(--color-primary);
+}
+```
+
+## Añadir una interacción con JavaScript
+
+Este ejemplo agrega una clase al header después de hacer scroll.
+
+```javascript title="assets/js/main.js"
+const header = document.querySelector('.site-header')
+
+if (header) {
+  const updateHeader = () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 24)
+  }
+
+  updateHeader()
+  window.addEventListener('scroll', updateHeader, { passive: true })
+}
+```
+
+Puedes acompañarlo con este estilo:
+
+```css title="assets/css/main.css"
+.site-header {
+  transition: box-shadow 180ms ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 12px 30px rgb(15 23 42 / 0.08);
+}
+```
+
+## Crear plantillas adicionales
+
+Cuando la base funcione, puedes ampliar el tema con los archivos que WordPress reconoce automáticamente:
+
+- `single.php` para una entrada individual.
+- `page.php` para páginas.
+- `archive.php` para archivos y categorías.
+- `search.php` para resultados de búsqueda.
+- `404.php` para páginas no encontradas.
+- `front-page.php` para una portada personalizada.
+
+WordPress utiliza su jerarquía de plantillas para decidir qué archivo cargar en cada URL.
+
+## Preparar el tema para producción
+
+Antes de utilizarlo en un sitio real:
+
+1. Comprueba que no existan errores con `WP_DEBUG` activado.
+2. Optimiza imágenes y fuentes.
+3. Prueba el menú, las entradas, las páginas y el buscador.
+4. Revisa el sitio en celular, tablet y escritorio.
+5. Valida accesibilidad, rendimiento y datos estructurados.
+6. No edites el tema directamente desde el administrador de WordPress.
+
+## Conclusión
+
+Ya tienes una base funcional para un tema de WordPress. Desde aquí puedes convertir cada sección en componentes reutilizables, añadir campos personalizados y construir plantillas específicas para servicios, tours, productos o cualquier otro tipo de contenido.
+
+<CTA
+  title="¿Necesitas un tema de WordPress profesional?"
+  text="En Miads diseñamos temas rápidos, administrables y adaptados a la identidad de tu empresa."
+/>
