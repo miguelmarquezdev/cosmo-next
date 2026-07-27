@@ -103,3 +103,10 @@ import { trackEvent } from "@/lib/analytics"
 
 trackEvent("click_whatsapp", { location: "hero" })
 ```
+
+## Validación de acceso con Google
+
+- `/login` solo permite entrar a usuarios que ya tienen un registro en `public.leads` o un rol `admin/staff` en `public.profiles`.
+- Una cuenta de Google no registrada es desconectada y enviada a `/registro?reason=not_registered`.
+- El panel `/cliente` vuelve a validar el acceso en el servidor, por lo que no se puede evitar la comprobación escribiendo la URL manualmente.
+- El registro continúa mediante `/auth/complete`, donde se crea la solicitud del prospecto.
