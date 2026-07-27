@@ -16,7 +16,12 @@ function textFromChildren(children: ReactNode): string {
   return ""
 }
 
-function Heading({ level, children, ...props }: { level: 2 | 3; children: ReactNode } & ComponentPropsWithoutRef<"h2">) {
+type HeadingProps = Omit<ComponentPropsWithoutRef<"h2">, "children"> & {
+  level: 2 | 3
+  children?: ReactNode
+}
+
+function Heading({ level, children, ...props }: HeadingProps) {
   const id = slugifyHeading(textFromChildren(children))
   if (level === 2) return <h2 id={id} className="scroll-mt-32" {...props}>{children}</h2>
   return <h3 id={id} className="scroll-mt-32" {...props}>{children}</h3>
@@ -65,8 +70,12 @@ export function CTA({ title = "¿Listo para hacer crecer tu negocio?", text = "C
 }
 
 export const mdxComponents = {
-  h2: (props: ComponentPropsWithoutRef<"h2">) => <Heading level={2} {...props} />,
-  h3: (props: ComponentPropsWithoutRef<"h3">) => <Heading level={3} {...props} />,
+  h2: ({ children, ...props }: ComponentPropsWithoutRef<"h2">) => (
+    <Heading level={2} {...props}>{children}</Heading>
+  ),
+  h3: ({ children, ...props }: ComponentPropsWithoutRef<"h3">) => (
+    <Heading level={3} {...props}>{children}</Heading>
+  ),
   a: ({ href = "", ...props }: ComponentPropsWithoutRef<"a">) => {
     if (href.startsWith("/")) return <Link href={href} {...props} />
     return <a href={href} target="_blank" rel="noreferrer" {...props} />
