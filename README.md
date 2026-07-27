@@ -110,3 +110,14 @@ trackEvent("click_whatsapp", { location: "hero" })
 - Una cuenta de Google no registrada es desconectada y enviada a `/registro?reason=not_registered`.
 - El panel `/cliente` vuelve a validar el acceso en el servidor, por lo que no se puede evitar la comprobación escribiendo la URL manualmente.
 - El registro continúa mediante `/auth/complete`, donde se crea la solicitud del prospecto.
+
+## Solicitudes de cambio
+
+Esta versión incluye un flujo de solicitudes entre clientes y administradores.
+
+1. Ejecuta `supabase/change-requests-migration.sql` en Supabase SQL Editor.
+2. El cliente usa `/cliente/solicitudes` para enviar y consultar solicitudes.
+3. El administrador usa `/admin/solicitudes` para responder y cambiar el estado.
+4. Los badges del menú muestran solicitudes abiertas.
+
+Estados disponibles: `pending`, `reviewing`, `working`, `completed`.

@@ -49,7 +49,8 @@ export function DashboardShell({ children, admin = false }: { children: React.Re
   useEffect(() => {
     const supabase = createClient()
 
-    supabase.auth.getUser().then(({ data }) => {
+    async function loadAccount() {
+      const { data } = await supabase.auth.getUser()
       const user = data.user
       if (!user) return
 
@@ -59,7 +60,9 @@ export function DashboardShell({ children, admin = false }: { children: React.Re
         email: user.email || "",
         avatarUrl: metadata.avatar_url || metadata.picture || null,
       })
-    })
+    }
+
+    loadAccount()
   }, [])
 
   async function logout() {
@@ -94,7 +97,7 @@ export function DashboardShell({ children, admin = false }: { children: React.Re
               }`}
             >
               <Icon className="size-4" />
-              {name}
+              <span>{name}</span>
             </Link>
           ))}
         </nav>
@@ -120,7 +123,6 @@ export function DashboardShell({ children, admin = false }: { children: React.Re
           >
             <span className="relative grid size-10 shrink-0 place-items-center overflow-hidden rounded-full border border-primary/20 bg-primary/10 text-sm font-semibold text-primary shadow-sm">
               {account.avatarUrl ? (
-                // Google profile images are remote and can change domains, so a normal img is safer here.
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={account.avatarUrl} alt={account.name} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
               ) : (

@@ -7,6 +7,7 @@ import { RegistrationDialog } from "@/components/registration-dialog"
 import { HeroAnalytics } from "@/components/hero-analytics"
 import { AnimatedNumber } from "@/components/animated-number"
 
+export const dynamic = "force-static"
 const services = [
   ["SEO que posiciona", "Auditoría, contenido y autoridad para convertir búsquedas en clientes.", Search],
   ["Diseño web", "Sitios veloces, elegantes y preparados para vender.", Globe2],

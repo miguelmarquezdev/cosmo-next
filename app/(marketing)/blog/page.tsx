@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { getAllBlogPosts } from "@/lib/blog-mdx"
 
+export const dynamic = "force-static"
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "long", year: "numeric" }).format(new Date(`${date}T12:00:00`))
 }
@@ -25,7 +26,7 @@ export default function BlogPage() {
           <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">Guías claras sobre SEO, páginas web, publicidad, diseño y tecnología.</p>
         </div>
 
-        <Link href={`/blog/${featured.slug}`} className="group mt-12 grid overflow-hidden rounded-3xl bg-card shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl dark:ring-white/10 lg:grid-cols-[1.15fr_.85fr]">
+        <Link prefetch={false} href={`/blog/${featured.slug}`} className="group mt-12 grid overflow-hidden rounded-3xl bg-card shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl dark:ring-white/10 lg:grid-cols-[1.15fr_.85fr]">
           <div className="relative min-h-72 overflow-hidden bg-muted">
             {featured.image ? <Image src={featured.image} alt={featured.title} fill className="object-cover transition duration-500 group-hover:scale-[1.02]" sizes="(max-width: 1024px) 100vw, 58vw" /> : null}
           </div>
@@ -43,7 +44,7 @@ export default function BlogPage() {
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {remaining.map((post) => (
             <Card key={post.slug} className="group overflow-hidden p-0 transition hover:-translate-y-1 hover:shadow-xl">
-              <Link href={`/blog/${post.slug}`}>
+              <Link prefetch={false} href={`/blog/${post.slug}`}>
                 <div className="relative aspect-[16/8] overflow-hidden bg-muted">
                   {post.image ? <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-[1.03]" sizes="(max-width: 768px) 100vw, 50vw" /> : null}
                 </div>

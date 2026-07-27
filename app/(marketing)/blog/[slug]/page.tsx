@@ -6,6 +6,9 @@ import { BlogArticleReader } from "@/components/blog-article-reader"
 import { mdxComponents } from "@/components/mdx-components"
 import { getAllBlogPosts, getBlogPost } from "@/lib/blog-mdx"
 
+export const dynamic = "force-static"
+export const dynamicParams = false
+export const revalidate = false
 export function generateStaticParams() {
   return getAllBlogPosts().map((post) => ({ slug: post.slug }))
 }
